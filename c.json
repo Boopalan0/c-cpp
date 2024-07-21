@@ -7,7 +7,7 @@
 	"Print to console": {
 		"prefix": "dp",
 		"body": [
-			"printf(\"$1 : %d\",$2);",
+			"printf(\"$1 : %d$2\\n\",$3);$0",
 		],
 		"description": "Log output to console"
 	},
@@ -16,14 +16,14 @@
         "body": [
             "for (int i = 0; i < $1; i++) {",
             "    printf(\"$2 : %d$3\", $4);",
-            "}"
+            "}$0"
         ],
         "description": "For loop with printf"
     },
 	"Scan the input":{
 		"prefix": "scan",
 		"body": [
-			"scanf(\"%d\",$1);"
+			"scanf(\"%d\",$1);$0"
 		],
 		"description": "used to scan the user input"
 	},
@@ -31,20 +31,29 @@
 		"prefix": "headline",
 		"body": [
 			"hd();",
-    		"printf(\"$1\");",
-    		"uhd();"
+    		"printf(\"$1\\n\");",
+    		"uhd();$0"
 		]
 	},
 	"body":{
 		"prefix": "body",
 		"body": [
 			"#include\"stdio.h\"",
-			"#include \"adi.h\"",
-			"int main(){"  ,  
+			"#include \"additional.h\"",
+			"int main(){",
+				"start();",
+
 				"$0",
-		    	"esp();",
+
+		    	"end();",
 		    	"return 0;",
 			"}",
 		],
 	},
+	"newline":{
+		"prefix": "nline();",
+		"body": [
+			"printf(\"$1\\n\"$2);$0"
+		]
+	}
 }
